@@ -47,7 +47,7 @@ def signup():
     pid3 = subprocess.Popen([sys.executable,"register.py"])
 
 def seller():
-    subprocess.Popen([sys.executable, "Seller.py"])
+    messagebox.showinfo('Error','Feature not available')
 
 # Username field
 Label(root, text="Username", font=("calibre", 10, 'bold')).place(x=425, y=225)
