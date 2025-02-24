@@ -1,5 +1,6 @@
 from tkinter import*
 from PIL import Image, ImageTk
+from tkinter import messagebox 
 import subprocess
 import sys
 
@@ -28,7 +29,7 @@ def signup():
 
 #becomeaseller
 def seller():
-    pid2 = subprocess.Popen([sys.executable,"Seller.py"])
+    messagebox.showinfo('Error','Feature not available')
 
 
 #username
