@@ -1,5 +1,6 @@
 from tkinter import *
 import customtkinter
+from tkinter import messagebox
 from PIL import Image, ImageTk
 import sqlite3
 
@@ -32,6 +33,31 @@ bg_label.place(x=0, y=0, relwidth=1, relheight=1)  # Ensure the background is pl
 # Prevent garbage collection
 hmp.bg_img_ref = bg_img
 
+# -------------- PREORDER BUTTON -------------
+def perordr_optn():
+    messagebox.showinfo("Invalid", "feature not available yet")
+
+# -------------- CART FUNCTIONALITY -------------
+cart_items = []  # This will store books added to the cart
+
+def view_cart():
+    """ View the books added to the cart """
+    cart_window = Toplevel(hmp)
+    cart_window.geometry("400x400")
+    cart_window.title("Your Cart")
+
+    if not cart_items:
+        empty_label = customtkinter.CTkLabel(cart_window, text="Your cart is empty.", font=("Arial", 16))
+        empty_label.pack(pady=20)
+    else:
+        for book_name in cart_items:
+            book_label = customtkinter.CTkLabel(cart_window, text=book_name, font=("Arial", 14))
+            book_label.pack(pady=5)
+        
+    # Add a button to close the cart window
+    close_btn = customtkinter.CTkButton(cart_window, text="Close", command=cart_window.destroy, fg_color="red", text_color="white", width=150, height=40)
+    close_btn.pack(pady=20)
+
 # ------------ DASHBOARD BUTTONS ------------
 info_button = customtkinter.CTkButton(hmp, text='User', fg_color="transparent", text_color="black", width=80, height=30)
 info_button.place(x=30, y=10)
@@ -45,10 +71,10 @@ contact_btn.place(x=1300, y=10)
 about_btn = customtkinter.CTkButton(hmp, text="About", fg_color="transparent", text_color="black", width=80, height=30)
 about_btn.place(x=1200, y=10)
 
-preordr_btn = customtkinter.CTkButton(hmp, text="Pre Order", fg_color="transparent", text_color="black", width=80, height=30)
+preordr_btn = customtkinter.CTkButton(hmp, text="Pre Order", fg_color="transparent", text_color="black", command=perordr_optn, width=80, height=30)
 preordr_btn.place(x=1100, y=10)
 
-cart_btn = customtkinter.CTkButton(hmp, text="Cart", fg_color="transparent", text_color="black", width=80, height=30)
+cart_btn = customtkinter.CTkButton(hmp, text="Cart", fg_color="transparent", text_color="black", width=80, height=30, command=view_cart)
 cart_btn.place(x=1000, y=10)
 
 Home_btn = customtkinter.CTkButton(hmp, text="Home", fg_color="transparent", text_color="black", width=80, height=30)
@@ -99,7 +125,12 @@ def open_book_window(book_name, book_image):
     book_label = customtkinter.CTkLabel(book_window, text=book_name, font=("Arial", 18))
     book_label.pack()
 
-    add_to_cart_btn = customtkinter.CTkButton(book_window, text="Add to Cart", fg_color="green", text_color="white", width=150, height=40)
+    def add_to_cart():
+        """ Add the book to the cart """
+        cart_items.append(book_name)
+        messagebox.showinfo("Added", f"{book_name} has been added to your cart.")
+        
+    add_to_cart_btn = customtkinter.CTkButton(book_window, text="Add to Cart", fg_color="green", text_color="white", width=150, height=40, command=add_to_cart)
     add_to_cart_btn.pack(pady=10)
 
     back_btn = customtkinter.CTkButton(book_window, text="Back", command=book_window.destroy, fg_color="red", text_color="white", width=150, height=40)
