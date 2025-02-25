@@ -93,7 +93,7 @@ hmp.srchbox_img_ref = srchbox_img
 
 # ------------ SEARCH BOX ------------
 Srchbox = customtkinter.CTkEntry(hmp, placeholder_text="Search", width=300, height=30)
-Srchbox.place(x=550, y=200)  
+Srchbox.place(x=550, y=400)  
 
 # ------------ RECOMMENDATIONS & NEW ARRIVALS ------------
 New_arrival = customtkinter.CTkButton(hmp, text="Recommendation", text_color="black", fg_color="transparent", width=150)
