@@ -10,8 +10,7 @@ hmp.geometry("1400x800")
 hmp.resizable(True, True)
 hmp.title("BookHive")
 hmp.iconbitmap("cart.ico")
-customtkinter.set_appearance_mode("light")  
-hmp.configure(fg_color="yellow")  
+customtkinter.set_appearance_mode("light")    
 
 # ------------ DATABASE SETUP ------------
 con = sqlite3.connect('books.db')
@@ -23,11 +22,10 @@ cur.execute('''CREATE TABLE IF NOT EXISTS books (
             )''')
 con.commit()
 
-# ------------ BACKGROUND IMAGE ------------
-bg_img = Image.open("appbg.png")  
-bg_img = ImageTk.PhotoImage(bg_img)
+# ------------ BACKGROUND IMAGE ------------  
+bg_img = ImageTk.PhotoImage(Image.open("appbg.png"))
 
-bg_label = customtkinter.CTkLabel(hmp, image=bg_img)
+bg_label = customtkinter.CTkLabel(hmp,text="", image=bg_img)
 bg_label.place(x=0, y=0, relwidth=1, relheight=1)  # Ensure the background is placed properly
 
 # Prevent garbage collection
@@ -80,9 +78,6 @@ preordr_btn.place(x=1100, y=10)
 cart_btn = customtkinter.CTkButton(hmp, text="Cart", fg_color="transparent", text_color="black", width=80, height=30, command=view_cart)
 cart_btn.place(x=1000, y=10)
 
-Home_btn = customtkinter.CTkButton(hmp, text="Home", fg_color="transparent", text_color="black", width=80, height=30)
-Home_btn.place(x=900, y=10)
-
 # ------------ SEARCH BOX BACKGROUND ------------
 srchbox_img_raw = Image.open("Bookimg.png")  
 srchbox_img_resized = srchbox_img_raw.resize((1400, 450))  
@@ -99,10 +94,10 @@ Srchbox = customtkinter.CTkEntry(hmp, placeholder_text="Search", width=300, heig
 Srchbox.place(x=550, y=400)  
 
 # ------------ RECOMMENDATIONS & NEW ARRIVALS ------------
-New_arrival = customtkinter.CTkButton(hmp, text="Recommendation", text_color="black", fg_color="transparent", width=150)
+New_arrival = customtkinter.CTkButton(hmp, text="Recommendation", text_color="black", fg_color="transparent", width=150,command= lambda:messagebox.showinfo("Not available","Soon to be added"))
 New_arrival.place(x=100, y=500)
 
-offer_button = customtkinter.CTkButton(hmp, text="New Arrivals", text_color="black", fg_color="transparent", width=150)
+offer_button = customtkinter.CTkButton(hmp, text="New Arrivals", text_color="black", fg_color="transparent", width=150,command= lambda:messagebox.showinfo("Not available","Soon to be added"))
 offer_button.place(x=100, y=550)
 
 # ------------ FUNCTION TO OPEN BOOK DETAILS WINDOW ------------
@@ -139,20 +134,22 @@ def open_book_window(book_name, book_image):
     back_btn = customtkinter.CTkButton(book_window, text="Back", command=book_window.destroy, fg_color="red", text_color="white", width=150, height=40)
     back_btn.pack(pady=10)
 
-# ------------ BOOK BUTTONS (DYNAMIC LOADING) ------------
+# ------------ BOOK BUTTNS (DYNAMIC LOADING) ------------
 cur.execute("DELETE FROM books")  # Clear existing records
 cur.execute("INSERT INTO books (name, image) VALUES ('Book 1', 'book1.png'), ('Book 2', 'book2.png'), ('Book 3', 'book3.png'), ('Book 4', 'book4.png')")
 con.commit()
 
 cur.execute("SELECT * FROM books")
 books = cur.fetchall()
-
 x_position = 800
 for book in books:
     book_id, book_name, book_image = book
-    btn = customtkinter.CTkButton(hmp, text=book_name, text_color="black", width=100, height=100, 
-                                  command=lambda b=book: open_book_window(b[1], b[2]))
+    book_cover = customtkinter.CTkImage(Image.open("image.png"),size=(110,110))
+    btn = customtkinter.CTkButton(hmp,text="",fg_color="transparent",hover=False,border_width=0,
+        corner_radius=0,width=110, height=110,image=book_cover,command=lambda b=book: open_book_window(b[1], b[2]))
     btn.place(x=x_position, y=500)
+    Book_label = customtkinter.CTkLabel(hmp, text=book_name,fg_color="white", text_color="black",height=9,width=20)
+    Book_label.place(x=x_position+30, y=620)
     x_position += 150
 
 # Run the main loop
