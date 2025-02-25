@@ -88,7 +88,7 @@ srchbox_img = ImageTk.PhotoImage(srchbox_img_resized)
 srchbox_background = customtkinter.CTkLabel(hmp, image=srchbox_img)
 srchbox_background.place(x=200, y=100)
 
-# Prevent garbage collection
+# Prevent garbage collections
 hmp.srchbox_img_ref = srchbox_img
 
 # ------------ SEARCH BOX ------------
