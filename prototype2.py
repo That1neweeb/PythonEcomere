@@ -33,10 +33,13 @@ bg_label.place(x=0, y=0, relwidth=1, relheight=1)  # Ensure the background is pl
 # Prevent garbage collection
 hmp.bg_img_ref = bg_img
 
-# -------------- PREORDER BUTTON -------------
+# -------------- PREORDER BUTTON FUNCTIONALITY -------------
 def perordr_optn():
     messagebox.showinfo("Invalid", "feature not available yet")
 
+# -------------- Contact BUTTON FUNCTIONALITY-------------
+def contact():
+    messagebox.showinfo("Contact Info","0000000")
 # -------------- CART FUNCTIONALITY -------------
 cart_items = []  # This will store books added to the cart
 
@@ -65,7 +68,7 @@ info_button.place(x=30, y=10)
 name = customtkinter.CTkLabel(hmp, text="*Username")
 name.place(x=100, y=10)
 
-contact_btn = customtkinter.CTkButton(hmp, text="Contact", fg_color="transparent", text_color="black", width=80, height=30)
+contact_btn = customtkinter.CTkButton(hmp, text="Contact", fg_color="transparent", text_color="black", width=80, height=30,command=contact)
 contact_btn.place(x=1300, y=10)
 
 about_btn = customtkinter.CTkButton(hmp, text="About", fg_color="transparent", text_color="black", width=80, height=30)
