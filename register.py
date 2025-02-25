@@ -21,7 +21,7 @@ con = sqlite3.connect('user.db')
 cur = con.cursor()
 
 # Create table if it doesn't exist
-cur.execute('''CREATE TABLE IF NOT EXISTS record(
+cur.execute('''CREATE TABLE IF NOT EXISTS records(
              email TEXT,
              firstname TEXT,
              lastname TEXT,
