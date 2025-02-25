@@ -19,7 +19,7 @@ bg_label.place(relwidth=1, relheight=1)
 
 #-------------DASHBOARD
 # -------- Username Display --------
-info_button = customtkinter.CTkButton(hmp, text='Username', fg_color="transparent",text_color="black", width=80, height=30)
+info_button = customtkinter.CTkButton(hmp, text='User', fg_color="transparent",text_color="black", width=80, height=30)
 info_button.place(x=30, y=10)
 
 name = customtkinter.CTkLabel(hmp, text="*Username")
