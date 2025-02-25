@@ -73,7 +73,7 @@ def insert_record():
         try:
             con = sqlite3.connect('user.db')
             cur = con.cursor()
-            cur.execute("INSERT INTO record VALUES (?, ?, ?, ?, ?, ?)", (
+            cur.execute("INSERT INTO records VALUES (?, ?, ?, ?, ?, ?)", (
                 emailorphn.get(),
                 fname.get(),
                 lname.get(),
@@ -85,15 +85,10 @@ def insert_record():
             con.close()
 
             messagebox.showinfo('Confirmation', 'Record Saved')
+            roots.destroy()
 
             # Clear entry fields after successful insertion
-            emailorphn.delete(0, END)
-            fname.delete(0, END)
-            lname.delete(0, END)
-            contact.delete(0, END)
-            username.delete(0, END)
-            password.delete(0, END)
-            confirm.delete(0, END)
+           
 
         except Exception as ep:
             messagebox.showerror('Database Error', str(ep))

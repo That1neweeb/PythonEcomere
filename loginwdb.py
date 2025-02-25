@@ -27,6 +27,7 @@ def check_login():
     
     if user:
         book()  # If credentials are correct, proceed to the next window
+        root.destroy() #to close window after login is successful
     else:
         messagebox.showerror("Login Failed", "Invalid username or password")
 
