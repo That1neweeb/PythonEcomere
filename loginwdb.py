@@ -21,7 +21,7 @@ def check_login():
     
     conn = sqlite3.connect("user.db")
     cursor = conn.cursor()
-    cursor.execute("SELECT * FROM records WHERE username=? AND password=?", (username, password))
+    cursor.execute("SELECT * FROM record WHERE username=? AND password=?", (username, password))
     user = cursor.fetchone()
     conn.close()
     
