@@ -69,7 +69,12 @@ name.place(x=100, y=10)
 contact_btn = customtkinter.CTkButton(hmp, text="Contact", fg_color="transparent", text_color="black", width=80, height=30,command=contact)
 contact_btn.place(x=1300, y=10)
 
-about_btn = customtkinter.CTkButton(hmp, text="About", fg_color="transparent", text_color="black", width=80, height=30)
+about_btn = customtkinter.CTkButton(hmp, text="About", fg_color="transparent", text_color="black", width=80, height=30,command=lambda:messagebox.showinfo
+("About",'''Team members :
+Sidhant Giri - Group Leader
+Rytham Acharya - Co-leader 
+Prajin Pokhrel - Group Member
+Sampada Shahi Thakuri - Group Member'''))
 about_btn.place(x=1200, y=10)
 
 preordr_btn = customtkinter.CTkButton(hmp, text="Pre Order", fg_color="transparent", text_color="black", command=perordr_optn, width=80, height=30)
